@@ -1,9 +1,14 @@
 import streamlit as st
 import hashlib
 from cryptography.fernet import Fernet
+import os
+
+
+
 
 # Generate a key (In real systems, securely store and reuse the same key)
-KEY = Fernet.generate_key()
+# Load a fixed key from environment
+KEY = os.environ.get("FERNET_KEY").encode()
 cipher = Fernet(KEY)
 
 # Session state setup
